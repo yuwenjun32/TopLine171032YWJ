@@ -1,5 +1,13 @@
 package cn.edu.gdpt.topline171032ywj.utils;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.List;
+
+import cn.edu.gdpt.topline171032ywj.Bean.NewsBean;
+
 public class JsonParse {//单例模式 单个模式（对象产生；构造方法）
     private static JsonParse instance=getInstance();
     private JsonParse(){//构造方法私有化，类外部不能调用，就是不能创建对象
@@ -9,5 +17,13 @@ public class JsonParse {//单例模式 单个模式（对象产生；构造方�
             instance=new JsonParse();
         }
         return instance;
+    }
+    public List<NewsBean> getAdList(String json){
+        Gson gson=new Gson();
+        Type listType=new TypeToken<NewsBean>(){
+
+        }.getType();
+        List<NewsBean> adList=gson.fromJson(json,listType);
+        return adList;
     }
 }
