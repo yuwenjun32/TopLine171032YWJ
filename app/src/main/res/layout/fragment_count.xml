@@ -11,12 +11,4 @@
         android:layout_height="match_parent"
         android:text="@string/hello_blank_fragment" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Count"
-        android:textColor="@android:color/holo_red_light"
-        android:textSize="50sp"
-        android:gravity="center_horizontal|center_vertical"/>
-
 </FrameLayout>
