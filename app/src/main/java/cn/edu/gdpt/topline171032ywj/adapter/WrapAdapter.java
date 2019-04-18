@@ -60,4 +60,14 @@ public class WrapAdapter<T extends RecyclerView.Adapter> extends RecyclerView.Ad
     public int getItemCount() {
         return mHeaderViewInfos.size()+mRealAdapter.getItemCount();
     }
+
+    @Override
+    public int getItemViewType(int position) {
+        if (isHeaderPosition(position)){
+            return mHeaderViewInfos.get(position).viewType;
+        }else {
+            return mRealAdapter.getItemViewType(position-mHeaderViewInfos.size());
+        }
+    }
 }
+
