@@ -32,7 +32,7 @@ public class AdBannerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return ab1==null?0:ab1.size();
+        return Integer.MAX_VALUE;
     }
 
     @Override
