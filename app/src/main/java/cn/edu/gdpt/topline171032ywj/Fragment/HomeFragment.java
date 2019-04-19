@@ -68,6 +68,7 @@ public class HomeFragment extends Fragment {
                     if (msg.obj!=null){
                         String adResult=(String)msg.obj;
                         List<NewsBean> ad1= JsonParse.getInstance().getAdList(adResult);
+                      //  Toast.makeText(getContext(),String.valueOf(ad1.size()),Toast.LENGTH_LONG).show();
                         if (ad1!=null){
                             if (ad1.size()>0){
                                 ada.setData(ad1);

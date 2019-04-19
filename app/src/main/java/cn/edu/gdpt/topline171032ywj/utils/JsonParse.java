@@ -20,7 +20,7 @@ public class JsonParse {//单例模式 单个模式（对象产生；构造方�
     }
     public List<NewsBean> getAdList(String json){
         Gson gson=new Gson();
-        Type listType=new TypeToken<NewsBean>(){
+        Type listType=new TypeToken<List<NewsBean>>(){
 
         }.getType();
         List<NewsBean> adList=gson.fromJson(json,listType);

@@ -50,6 +50,7 @@ public class AdBannerFragment extends Fragment {
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT
         );
+        iv.setBackgroundColor(888888);
         iv.setLayoutParams(lp);
         iv.setScaleType(ImageView.ScaleType.FIT_XY);
         return iv;

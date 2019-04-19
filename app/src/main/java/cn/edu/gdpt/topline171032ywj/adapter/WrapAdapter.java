@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class WrapAdapter<T extends RecyclerView.Adapter> extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private final T mRealAdapter;
     private static final int BASE_HEADER_VIEW_TYPE=-1<<10;
-    private ArrayList<FixedViewInfo> mHeaderViewInfos=new ArrayList<FixedViewInfo>();
+    private ArrayList<FixedViewInfo> mHeaderViewInfos=new ArrayList();
     public class FixedViewInfo{
         public View view;
         public int viewType;
@@ -27,6 +27,7 @@ public class WrapAdapter<T extends RecyclerView.Adapter> extends RecyclerView.Ad
         info.view=view;
         info.viewType=BASE_HEADER_VIEW_TYPE+mHeaderViewInfos.size();
         mHeaderViewInfos.add(info);
+      //  Log.i("aaa",String.valueOf(mHeaderViewInfos.size()));
         notifyDataSetChanged();
     }
     private boolean isHeader(int viewType){

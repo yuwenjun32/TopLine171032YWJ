@@ -8,7 +8,7 @@ public class UtilsHelper {
     public static int getScrernWidth(Context context){
         WindowManager wm=(WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics outMetrics=new DisplayMetrics();
-        wm.getDefaultDisplay().getMetrics(new DisplayMetrics());
+        wm.getDefaultDisplay().getMetrics(outMetrics);
         return outMetrics.widthPixels;
     }
 }
