@@ -1,6 +1,7 @@
 package cn.edu.gdpt.topline171032ywj.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import java.util.List;
 
 import cn.edu.gdpt.topline171032ywj.Bean.NewsBean;
 import cn.edu.gdpt.topline171032ywj.R;
+import cn.edu.gdpt.topline171032ywj.activity.NewsDetailActivity;
 
 public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<NewsBean> newsList;
@@ -50,6 +52,14 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int i) {
         if (newsList==null) return;
         final NewsBean bean=newsList.get(i);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(context, NewsDetailActivity.class);
+                intent.putExtra("newsBean",bean);
+                context.startActivity(intent);
+            }
+        });
         if (holder instanceof TypeOneViewHolder){
             ((TypeOneViewHolder)holder).tv_name.setText(bean.getNewsName());
             ((TypeOneViewHolder)holder).tv_news_type_name.setText(bean.getNewsTypeName());
