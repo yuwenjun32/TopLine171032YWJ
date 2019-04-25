@@ -1,6 +1,7 @@
 package cn.edu.gdpt.topline171032ywj.Fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -10,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.itheima.PullToRefreshView;
 import com.squareup.okhttp.Call;
@@ -23,6 +25,7 @@ import java.util.List;
 
 import cn.edu.gdpt.topline171032ywj.Bean.NewsBean;
 import cn.edu.gdpt.topline171032ywj.R;
+import cn.edu.gdpt.topline171032ywj.activity.PythonActivity;
 import cn.edu.gdpt.topline171032ywj.adapter.AdBannerAdapter;
 import cn.edu.gdpt.topline171032ywj.adapter.HomeListAdapter;
 import cn.edu.gdpt.topline171032ywj.utils.Constant;
@@ -146,6 +149,14 @@ public class HomeFragment extends Fragment {
         ada=new AdBannerAdapter(getActivity().getSupportFragmentManager());
         adPager.setAdapter(ada);
         resetSize();
+        LinearLayout ll_python=(LinearLayout)headView.findViewById(R.id.ll_python);
+        ll_python.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity(), PythonActivity.class);
+                startActivity(intent);
+            }
+        });
         return view;
     }
 

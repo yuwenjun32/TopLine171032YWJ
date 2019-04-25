@@ -7,6 +7,7 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 import cn.edu.gdpt.topline171032ywj.Bean.NewsBean;
+import cn.edu.gdpt.topline171032ywj.Bean.PythonBean;
 
 public class JsonParse {//单例模式 单个模式（对象产生；构造方法）
     private static JsonParse instance=getInstance();
@@ -34,5 +35,11 @@ public class JsonParse {//单例模式 单个模式（对象产生；构造方�
         }.getType();
         List<NewsBean> newsList=gson.fromJson(json,listType);
         return newsList;
+    }
+    public List<PythonBean> getPythonList(String json){
+        Gson gson=new Gson();
+        Type listType=new TypeToken<List<PythonBean>>(){}.getType();
+        List<PythonBean> pythonList=gson.fromJson(json,listType);
+        return pythonList;
     }
 }
