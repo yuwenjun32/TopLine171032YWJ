@@ -36,7 +36,13 @@ public class NewsDetailActivity extends AppCompatActivity {
         mWebSettings.setDefaultTextEncodingName("GBK");
         mWebSettings.setLoadsImagesAutomatically(true);
         mWebSettings.setJavaScriptEnabled(true);
-        webView.setWebViewClient(new WebViewClient()
+        webView.setWebViewClient(new WebViewClient(){
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+            }
+        }
         );
     }
 
