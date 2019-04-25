@@ -55,6 +55,7 @@ public class HomeFragment extends Fragment {
         okHttpClient=new OkHttpClient();
         mHandler=new MHandler();
         getADData();
+        getNewsData();
         View view=initView(inflater,container);
         return view;
 
@@ -76,6 +77,16 @@ public class HomeFragment extends Fragment {
                         }
                     }
                     break;
+                case 2:
+                    if (msg.obj!=null){
+                        String newsResult=(String)msg.obj;
+                        List<NewsBean> nb1=JsonParse.getInstance().getNewsListt(newsResult);
+                        if (nb1!=null){
+                            if (nb1.size()>0){
+                                adapter.setData(nb1);
+                            }
+                        }
+                    }
             }
         }
     }
@@ -100,13 +111,33 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+    private void getNewsData(){
+        Request request=new Request.Builder().url(Constant.WED_SITE+
+                Constant.REQUEST_NEWS_URL).build();
+        Call call=okHttpClient.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Request request, IOException arg1) {
+
+            }
+
+            @Override
+            public void onResponse(Response response) throws IOException {
+                String res=response.body().string();
+                Message msg=new Message();
+                msg.what=2;
+                msg.obj=res;
+                mHandler.sendMessage(msg);
+            }
+        });
+    }
 
     private View initView(LayoutInflater inflater, ViewGroup container) {
         View view=inflater.inflate(R.layout.fragment_home,container,false);
         mPullToRefreshView=(PullToRefreshView)view.findViewById(R.id.mPullToRefresh);
         recyclerView=(WrepRecyclerView)view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter=new HomeListAdapter();
+        adapter=new HomeListAdapter(getActivity());
         recyclerView.setAdapter(adapter);
         View headView=inflater.inflate(R.layout.head_view,container,false);
         recyclerView.addHeaderView(headView);

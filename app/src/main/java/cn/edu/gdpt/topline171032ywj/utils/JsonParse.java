@@ -26,4 +26,13 @@ public class JsonParse {//单例模式 单个模式（对象产生；构造方�
         List<NewsBean> adList=gson.fromJson(json,listType);
         return adList;
     }
+
+    public List<NewsBean> getNewsListt(String json) {
+        Gson gson=new Gson();
+        Type listType=new TypeToken<List<NewsBean>>(){
+
+        }.getType();
+        List<NewsBean> newsList=gson.fromJson(json,listType);
+        return newsList;
+    }
 }
