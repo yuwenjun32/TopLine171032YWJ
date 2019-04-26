@@ -138,6 +138,17 @@ public class HomeFragment extends Fragment {
     private View initView(LayoutInflater inflater, ViewGroup container) {
         View view=inflater.inflate(R.layout.fragment_home,container,false);
         mPullToRefreshView=(PullToRefreshView)view.findViewById(R.id.mPullToRefresh);
+        mPullToRefreshView.setOnRefreshListener(new PullToRefreshView.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mPullToRefreshView.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mPullToRefreshView.setRefreshing(false);
+                    }
+                },500);
+            }
+        });
         recyclerView=(WrepRecyclerView)view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter=new HomeListAdapter(getActivity());

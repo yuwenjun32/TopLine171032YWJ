@@ -58,7 +58,7 @@ public class PythonActivity extends AppCompatActivity {
     private void initData() {
         OkHttpClient okHttpClient=new OkHttpClient();
         Request request=new Request.Builder().url(Constant.WED_SITE+
-                Constant.REQUEST_AD_URL).build();
+                Constant.REQUEST_PYTIION_URL).build();
         Call call=okHttpClient.newCall(request);
         call.enqueue(new Callback() {
             @Override
@@ -90,7 +90,7 @@ public class PythonActivity extends AppCompatActivity {
                         mPullToRefreshView.setRefreshing(false);
                         initData();
                     }
-                },1000);
+                },500);
             }
         });
         recyclerView=(WrepRecyclerView)findViewById(R.id.recyclerView);
