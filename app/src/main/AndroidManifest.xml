@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/app_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".activity.AndroidCountActivity"></activity>
+        <activity android:name=".activity.ADActivity"></activity>
+        <activity android:name=".activity.AndroidCountActivity" />
         <activity android:name=".activity.NewsDetailActivity" />
         <activity android:name=".activity.PythonActivity" />
         <activity android:name=".SplashActivity">

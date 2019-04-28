@@ -14,12 +14,15 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
+import cn.edu.gdpt.topline171032ywj.Bean.ADBean;
 import cn.edu.gdpt.topline171032ywj.Bean.NewsBean;
 import cn.edu.gdpt.topline171032ywj.R;
+import cn.edu.gdpt.topline171032ywj.activity.ADActivity;
 import cn.edu.gdpt.topline171032ywj.activity.NewsDetailActivity;
 
 public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<NewsBean> newsList;
+    private List<ADBean> adList;
     private static final int TYPE_ONE=1;
     private static final int TYPE_TWO=2;
     private Context context;
@@ -28,6 +31,10 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
     public void setData(List<NewsBean> newsList){
         this.newsList=newsList;
+        notifyDataSetChanged();
+    }
+    public void setAdData(List<ADBean> adList){
+        this.adList=adList;
         notifyDataSetChanged();
     }
     @NonNull
@@ -49,7 +56,7 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int i) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int i) {
         if (newsList==null) return;
         final NewsBean bean=newsList.get(i);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -58,6 +65,14 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 Intent intent=new Intent(context, NewsDetailActivity.class);
                 intent.putExtra("newsBean",bean);
                 context.startActivity(intent);
+            }
+        });
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1=new Intent(context, ADActivity.class);
+                intent1.putExtra("ADBean",bean);
+                context.startActivities(intent1);
             }
         });
         if (holder instanceof TypeOneViewHolder){
