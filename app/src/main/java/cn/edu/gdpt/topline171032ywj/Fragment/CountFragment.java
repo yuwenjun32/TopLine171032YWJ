@@ -1,6 +1,7 @@
 package cn.edu.gdpt.topline171032ywj.Fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import com.nightonke.boommenu.ButtonEnum;
 import com.nightonke.boommenu.Piece.PiecePlaceEnum;
 
 import cn.edu.gdpt.topline171032ywj.R;
+import cn.edu.gdpt.topline171032ywj.activity.AndroidCountActivity;
 import cn.edu.gdpt.topline171032ywj.utils.BuilderManager;
 
 /**
@@ -52,6 +54,10 @@ public class CountFragment extends Fragment {
                     @Override
                     public void onBoomButtonClick(int index) {
                         switch (index){
+                            case 0:
+                                Intent intent=new Intent(getActivity(), AndroidCountActivity.class);
+                                startActivity(intent);
+                                break;
                         }
                     }
                 }));
