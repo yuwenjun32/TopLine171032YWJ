@@ -1,5 +1,6 @@
 package cn.edu.gdpt.topline171032ywj.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,6 +14,7 @@ import com.bumptech.glide.Glide;
 
 import cn.edu.gdpt.topline171032ywj.Bean.NewsBean;
 import cn.edu.gdpt.topline171032ywj.R;
+import cn.edu.gdpt.topline171032ywj.activity.NewsDetailActivity;
 
 public class AdBannerFragment extends Fragment {
     private NewsBean nb;
@@ -53,6 +55,16 @@ public class AdBannerFragment extends Fragment {
         iv.setBackgroundColor(888888);
         iv.setLayoutParams(lp);
         iv.setScaleType(ImageView.ScaleType.FIT_XY);
+        iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (nb==null) return;
+                Intent intent=new Intent(getActivity(), NewsDetailActivity.class);
+                intent.putExtra("newsBean",nb);
+                getActivity().startActivity(intent);
+            }
+        });
         return iv;
+
     }
 }
