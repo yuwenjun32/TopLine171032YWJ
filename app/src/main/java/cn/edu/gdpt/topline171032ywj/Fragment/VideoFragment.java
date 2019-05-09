@@ -9,7 +9,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.itheima.PullToRefreshView;
 import com.squareup.okhttp.Call;
@@ -23,6 +22,7 @@ import java.util.List;
 
 import cn.edu.gdpt.topline171032ywj.Bean.VideoBean;
 import cn.edu.gdpt.topline171032ywj.R;
+import cn.edu.gdpt.topline171032ywj.adapter.VideoListAdapter;
 import cn.edu.gdpt.topline171032ywj.utils.Constant;
 import cn.edu.gdpt.topline171032ywj.utils.JsonParse;
 import cn.edu.gdpt.topline171032ywj.view.WrepRecyclerView;
@@ -34,6 +34,7 @@ public class VideoFragment extends Fragment {
     private MHandle mHandle;
     private PullToRefreshView mPullToRefreshView;
     private WrepRecyclerView recyclerView;
+    private VideoListAdapter adapter;
 
 
     public VideoFragment() {
@@ -61,7 +62,8 @@ public class VideoFragment extends Fragment {
                     if (msg.obj!=null){
                         String vlResult=(String)msg.obj;
                         List<VideoBean> videoList= JsonParse.getInstance().getVideoList(vlResult);//使用Gson解析数据
-                        Toast.makeText(getContext(),String.valueOf(videoList.size()),Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getContext(),String.valueOf(videoList.size()),Toast.LENGTH_SHORT).show();
+                        adapter.setData(videoList);
                     }
                     break;
             }
@@ -95,7 +97,21 @@ public class VideoFragment extends Fragment {
         View view=inflater.inflate(R.layout.fragment_video,contsiner,false);
         recyclerView=(WrepRecyclerView)view.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        adapter=new VideoListAdapter(getActivity());
+        recyclerView.setAdapter(adapter);
         mPullToRefreshView=(PullToRefreshView)view.findViewById(R.id.pull_to_refresh);
+        mPullToRefreshView.setOnRefreshListener(new PullToRefreshView.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mPullToRefreshView.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mPullToRefreshView.setRefreshing(false);
+                        initData();
+                    }
+                },500);
+            }
+        });
         return view;
     }
 
