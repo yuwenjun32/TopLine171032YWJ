@@ -1,6 +1,9 @@
 package cn.edu.gdpt.topline171032ywj.activity;
 
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -12,9 +15,12 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IFillFormatter;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.github.mikephil.charting.interfaces.dataprovider.LineDataProvider;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.github.mikephil.charting.utils.Utils;
 
 import java.util.ArrayList;
 
@@ -51,6 +57,33 @@ public class JavaCountActivity extends AppCompatActivity {
         dataSets.add(lineDataSet);
         LineData data=new LineData(dataSets);
         chartTop.setData(data);
+        //改变折线图样式
+        if (chartTop.getData()!=null&&chartTop.getData().getDataSetCount()>0){
+            lineDataSet=(LineDataSet)chartTop.getData().getDataSetByIndex(0);
+            lineDataSet.setValues(yVals);
+            lineDataSet.notifyDataSetChanged();
+            chartTop.getData().notifyDataChanged();
+            chartTop.notifyDataSetChanged();
+        }else {
+            lineDataSet.setDrawFilled(true);
+            lineDataSet.setFillFormatter(new IFillFormatter() {
+                @Override
+                public float getFillLinePosition(ILineDataSet dataSet, LineDataProvider dataProvider) {
+                    return chartTop.getAxisLeft().getAxisMaximum();
+                }
+            });
+            if (Utils.getSDKInt()>=18){
+                Drawable drawable= ContextCompat.getDrawable(this,R.drawable.fade_red);
+                lineDataSet.setFillDrawable(drawable);
+            }else {
+                lineDataSet.setFillColor(Color.BLACK);
+            }
+        }
+
+        {
+            //折线图背景颜色
+            chartTop.setBackgroundColor(Color.WHITE);
+        }
 
         //柱状图
         //X轴数据
@@ -72,5 +105,7 @@ public class JavaCountActivity extends AppCompatActivity {
         dataBarSets.add(barDataSet);
         BarData barData=new BarData(dataBarSets);
         chartButtom.setData(barData);
+
+
     }
 }
