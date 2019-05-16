@@ -17,6 +17,7 @@ import com.nightonke.boommenu.Piece.PiecePlaceEnum;
 
 import cn.edu.gdpt.topline171032ywj.R;
 import cn.edu.gdpt.topline171032ywj.activity.AndroidCountActivity;
+import cn.edu.gdpt.topline171032ywj.activity.JavaCountActivity;
 import cn.edu.gdpt.topline171032ywj.utils.BuilderManager;
 
 /**
@@ -56,6 +57,10 @@ public class CountFragment extends Fragment {
                         switch (index){
                             case 0:
                                 Intent intent=new Intent(getActivity(), AndroidCountActivity.class);
+                                startActivity(intent);
+                                break;
+                            case 1:
+                                intent=new Intent(getActivity(), JavaCountActivity.class);
                                 startActivity(intent);
                                 break;
                         }
