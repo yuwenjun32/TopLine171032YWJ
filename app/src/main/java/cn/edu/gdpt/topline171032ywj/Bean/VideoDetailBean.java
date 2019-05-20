@@ -1,12 +1,14 @@
 package cn.edu.gdpt.topline171032ywj.Bean;
 
-public class VideoDetailBean {
+import java.io.Serializable;
+
+public class VideoDetailBean implements Serializable {
 
     /**
      * video_id : DA2D015D371417299C33DC5901307461
      * video_name : 01-jQuery初体验
      */
-
+    private static final long serialVersionUID=1L;
     private String video_id;
     private String video_name;
 

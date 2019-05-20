@@ -16,7 +16,7 @@ public class VideoBean {
     private String name;
     private String img;
     private String intro;
-    private List<VideoDetailListBean> videoDetailList;
+    private List<VideoDetailBean> videoDetailList;
 
     public int getId() {
         return id;
@@ -50,14 +50,13 @@ public class VideoBean {
         this.intro = intro;
     }
 
-    public List<VideoDetailListBean> getVideoDetailList() {
+    public List<VideoDetailBean> getVideoDetailList() {
         return videoDetailList;
     }
 
-    public void setVideoDetailList(List<VideoDetailListBean> videoDetailList) {
+    public void setVideoDetailList(List<VideoDetailBean> videoDetailList) {
         this.videoDetailList = videoDetailList;
     }
 
-    public static class VideoDetailListBean {
-    }
+
 }
