@@ -5,6 +5,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.VideoDetailActivity">
+    <RelativeLayout
+        android:id="@+id/rl_play"
+        android:layout_width="fill_parent"
+        android:layout_height="300dp"
+        android:background="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <SurfaceView
+            android:id="@+id/playerSurfaceView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"/>
+        <ProgressBar
+            android:id="@+id/bufferProgressBar"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"/>
+        <SeekBar
+            android:id="@+id/skbProgress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:maxHeight="3dp"
+            android:minHeight="3dp"/>
+    </RelativeLayout>
     <LinearLayout
         android:id="@+id/ll_below_info"
         android:layout_width="fill_parent"

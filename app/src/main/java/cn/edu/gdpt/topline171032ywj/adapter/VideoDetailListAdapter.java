@@ -54,7 +54,7 @@ public class VideoDetailListAdapter extends BaseAdapter {
         }else {
             vh=(ViewHolder)convertView.getTag();
         }
-        final VideoDetailBean bean= (VideoDetailBean) getItem(position);
+         final VideoDetailBean bean= (VideoDetailBean) getItem(position);
         if (bean!=null){
             vh.title.setText(bean.getVideo_name());
             vh.iv_icon.setImageResource(R.drawable.iv_video_icon);
