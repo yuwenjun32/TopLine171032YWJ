@@ -33,6 +33,7 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.2.4'
     implementation project(path: ':boommenu')
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    implementation 'de.hdodenhof:circleimageview:3.0.0'
 }
 repositories {
     maven { url 'https://jitpack.io' }

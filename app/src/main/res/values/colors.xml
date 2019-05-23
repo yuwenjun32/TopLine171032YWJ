@@ -7,5 +7,8 @@
     <color name="color_green">#008000</color>
     <color name="color_orange">#FFA500</color>
     <color name="color_violet">#EE82EE</color>
+    <color name="starTextCOLOR">#999999</color>
+    <color name="divider_line_color">#ebebeb</color>
+    <color name="colorPrimary2">#eb413d</color>
 
 </resources>
