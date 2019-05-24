@@ -44,7 +44,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         switch (v.getId()){
             case R.id.iv_avatar:
                 //跳转到登录界面
-                Intent intent=new Intent(getContext(), LoginActivity.class);
+                Intent intent=new Intent(getActivity().getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
                 break;
         }
