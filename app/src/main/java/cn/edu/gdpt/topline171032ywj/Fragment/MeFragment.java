@@ -3,6 +3,7 @@ package cn.edu.gdpt.topline171032ywj.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +18,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
  */
 public class MeFragment extends Fragment implements View.OnClickListener {
     private View view;
-    CircleImageView iv_avatar;
+    private  CircleImageView iv_avatar;
+    private boolean isLogin=false;
+    private CollapsingToolbarLayout collapsingToolbarLayout;
     public MeFragment() {
         // Required empty public constructor
     }
@@ -33,6 +36,8 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     }
 
     private void initView(View view) {
+        collapsingToolbarLayout=(CollapsingToolbarLayout)view.findViewById(R.id.collapsing_tool_bar);
+        collapsingToolbarLayout.setTitle("无登录");
         iv_avatar=(CircleImageView)view.findViewById(R.id.iv_avatar);
         iv_avatar.setImageResource(R.drawable.default_head);
         iv_avatar.setOnClickListener(this);
@@ -45,8 +50,20 @@ public class MeFragment extends Fragment implements View.OnClickListener {
             case R.id.iv_avatar:
                 //跳转到登录界面
                 Intent intent=new Intent(getActivity().getApplicationContext(), LoginActivity.class);
-                startActivity(intent);
+                //startActivity(intent);
+                startActivityForResult(intent,1);
                 break;
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==1&&data!=null){
+            boolean isLogin=data.getBooleanExtra("isLogin",false);
+            String userName=data.getStringExtra("loginUserName");
+            collapsingToolbarLayout.setTitle(userName);
+            this.isLogin=isLogin;
         }
     }
 }

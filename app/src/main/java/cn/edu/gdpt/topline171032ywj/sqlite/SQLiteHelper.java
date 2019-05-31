@@ -15,7 +15,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE IF NOT EXISTS "+U_USERINFO+"("
                 +"_id INTEGER PRIMARY KEY AUTOINCREMENT,"
-                +"userNaem VARCHAR,"    //用户名
+                +"userName VARCHAR,"    //用户名
                 +"password VARCHAR,"    //登录密码
                 +"nickName VARCHAR,"    //昵称
                 +"sex VARCHAR,"         //性别
